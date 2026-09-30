@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f4f6fb" />
+    <meta
+      name="description"
+      content="Meta AgentX turns business goals into coordinated, evidence-backed agent workflows."
+    />
+    <title>Meta AgentX · Agent workspace</title>
+    <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/assets/styles.css" />
+    <script src="/assets/app.js" defer></script>
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" id="sidebar" aria-label="Main navigation">
+        <a class="brand" href="#overview" aria-label="Meta AgentX home" data-view="overview">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 32 32" fill="none">
+              <path d="M7 23.5V9.8c0-1.1 1.4-1.6 2.1-.7l6.9 8.7 6.9-8.7c.7-.9 2.1-.4 2.1.7v13.7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" />
+              <circle cx="25.5" cy="7" r="2.5" fill="#8EE7D4" />
+            </svg>
+          </span>
+          <span class="brand-copy"><strong>Meta<span> Agent</span>X</strong><small>Intelligence, in motion</small></span>
+        </a>
+
+        <button class="workspace-switcher" type="button" aria-label="Current workspace">
+          <span class="workspace-avatar">W</span>
+          <span class="workspace-label"><strong>WorkSpace</strong><small>Personal workspace</small></span>
+          <svg class="workspace-chevron" viewBox="0 0 20 20" aria-hidden="true"><path d="m6 8 4 4 4-4" /></svg>
+        </button>
+
+        <nav class="side-nav">
+          <span class="nav-label">Workspace</span>
+          <button class="nav-link active" type="button" data-view="overview">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="7" height="7" rx="1.8"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.8"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.8"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.8"/></svg>
+            <span>Overview</span>
+          </button>
+          <button class="nav-link" type="button" data-view="tasks">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 6h12M8 12h12M8 18h12"/><path d="m3.5 6 .8.8L5.8 5M3.5 12l.8.8 1.5-1.8M3.5 18l.8.8 1.5-1.8"/></svg>
+            <span>Task runs</span><span class="nav-count" id="navTaskCount">0</span>
+          </button>
+          <button class="nav-link" type="button" data-view="agents">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 19.5v-1.1a5.5 5.5 0 0 1 11 0v1.1M16 5.3a3.2 3.2 0 0 1 0 6.2M17 14a5.4 5.4 0 0 1 3.5 5.1v.4"/></svg>
+            <span>Agent library</span>
+          </button>
+          <button class="nav-link" type="button" data-view="businessContext">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="7.5" width="17" height="12.5" rx="2"/><path d="M8 7.5V5.8A1.8 1.8 0 0 1 9.8 4h4.4A1.8 1.8 0 0 1 16 5.8v1.7M3.5 12.2h17M10 12.2v2.1h4v-2.1"/></svg>
+            <span>Business context</span>
+          </button>
+          <button class="nav-link" type="button" data-view="connections">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="7" cy="7" r="3"/><circle cx="17" cy="17" r="3"/><path d="M9.2 9.2 14.8 14.8M16.8 7H20v3.2M4 17H7.2M17 14v3"/></svg>
+            <span>Data connections</span>
+          </button>
+
+          <span class="nav-label nav-label-spaced">Resources</span>
+          <a class="nav-link nav-link-docs" href="/docs" target="_blank" rel="noreferrer">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3.8h8l4 4v12.4H6z"/><path d="M14 3.8v4h4M9 12h6M9 15.5h6"/></svg>
+            <span>API reference</span><span class="external-arrow" aria-hidden="true">↗</span>
+          </a>
+        </nav>
+
+        <div class="sidebar-bottom">
+          <div class="sidebar-note">
+            <span class="note-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M12 3.5 14.4 9.6 20.5 12l-6.1 2.4L12 20.5l-2.4-6.1L3.5 12l6.1-2.4L12 3.5Z"/><path d="m19 3 .7 2.3L22 6l-2.3.7L19 9l-.7-2.3L16 6l2.3-.7L19 3Z"/></svg>
+            </span>
+            <div><strong>Built to think together</strong><p>One goal, a whole team of specialists.</p></div>
+          </div>
+          <div class="sidebar-divider"></div>
+          <div class="profile-row">
+            <span class="profile-avatar">A</span>
+            <span class="profile-copy"><strong>Alex Morgan</strong><small>Workspace owner</small></span>
+            <span class="profile-menu" aria-hidden="true">···</span>
+          </div>
+          <div class="sidebar-meta"><span class="sidebar-status-dot"></span><span id="sidebarMode">Checking connection</span><span class="version-label">v1.0</span></div>
+          <div class="sidebar-meta worker-meta" id="workerStatus"><span class="sidebar-status-dot"></span><span id="workerMode">Checking worker</span><span class="version-label">runtime</span></div>
+        </div>
+      </aside>
+
+      <div class="mobile-scrim" id="mobileScrim" hidden></div>
+
+      <div class="main-shell">
+        <header class="topbar">
+          <div class="topbar-leading">
+            <button class="icon-button mobile-menu-button" id="mobileMenuButton" type="button" aria-label="Open navigation menu">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" /></svg>
+            </button>
+            <div class="breadcrumbs"><span>Workspace</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m6 3 5 5-5 5" /></svg><strong id="breadcrumbCurrent">Overview</strong></div>
+          </div>
+          <div class="topbar-actions">
+            <label class="global-search" for="globalSearch">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 4.2 4.2"/></svg>
+              <input id="globalSearch" type="search" placeholder="Search task runs" autocomplete="off" aria-label="Search task runs" />
+              <kbd>/</kbd>
+            </label>
+            <div class="connection-pill" id="connectionStatus" title="API connection status">
+              <span class="connection-dot"></span><span class="connection-text">Connecting</span>
+            </div>
+            <button class="icon-button shortcut-button" id="shortcutsButton" type="button" aria-label="Show keyboard shortcuts" title="Keyboard shortcuts">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.6 9a2.5 2.5 0 1 1 4.2 1.8c-1.1.9-1.8 1.2-1.8 2.7M12 16.7v.1"/></svg>
+            </button>
+          </div>
+        </header>
+
+        <main class="main-content">
+          <section class="view" id="overviewView" aria-labelledby="overviewTitle">
+            <div class="page-heading overview-heading">
+              <div>
+                <p class="eyebrow">YOUR TEAM WORKSPACE</p>
+                <h1 id="overviewTitle">Turn big questions into clear next steps.</h1>
+                <p class="page-subtitle">Give your agents a goal. They’ll investigate, collaborate, and bring back the signal.</p>
+              </div>
+              <button class="button button-primary" type="button" data-open-task>
+                <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 4v12M4 10h12" /></svg>
+                <span>New task</span><kbd>N</kbd>
+              </button>
+            </div>
+
+            <section class="hero-banner" aria-label="Meta AgentX introduction">
+              <div class="hero-glow hero-glow-one"></div><div class="hero-glow hero-glow-two"></div>
+              <div class="hero-copy">
+                <div class="hero-kicker"><span class="hero-live-dot"></span> Your agent team, working in sync</div>
+                <h2>The right agents.<br /><span>One clear answer.</span></h2>
+                <p>Meta AgentX breaks complex goals into focused work, runs specialists in parallel, and brings the evidence together.</p>
+                <button class="hero-link" type="button" data-open-task>Start with a goal <span aria-hidden="true">↗</span></button>
+              </div>
+              <div class="hero-art" aria-hidden="true">
+                <div class="orbit orbit-outer"></div><div class="orbit orbit-inner"></div>
+                <div class="orbit-node orbit-node-one"><span>↗</span></div>
+                <div class="orbit-node orbit-node-two"><span>◈</span></div>
+                <div class="orbit-node orbit-node-three"><span>⌘</span></div>
+                <div class="orbit-node orbit-node-four"><span>✳</span></div>
+                <div class="orbit-center"><span class="orbit-center-mark">M</span><span class="orbit-center-dot"></span></div>
+                <div class="hero-art-label hero-art-label-top"><span class="label-pulse"></span> 9 roles, one team</div>
+                <div class="hero-art-label hero-art-label-bottom">Ideas in · clarity out <span>✦</span></div>
+              </div>
+              <div class="hero-footnote"><span class="hero-footnote-icon">✦</span> Built for thoughtful work, not just more work.</div>
+            </section>
+
+            <section class="metrics-grid" aria-label="Workspace metrics">
+              <article class="metric-card metric-total">
+                <div class="metric-top"><span class="metric-label">Total runs</span><span class="metric-icon metric-icon-violet"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4.5h12v15H6z"/><path d="M9 8h6M9 12h6M9 16h3"/></svg></span></div>
+                <div class="metric-value" id="metricTotal">—</div><div class="metric-foot">Across your workspace</div>
+              </article>
+              <article class="metric-card metric-active">
+                <div class="metric-top"><span class="metric-label">In progress</span><span class="metric-icon metric-icon-blue"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5v5l3.3 2"/></svg></span></div>
+                <div class="metric-value" id="metricActive">—</div><div class="metric-foot"><span class="metric-live-dot"></span> Queued or being worked on</div>
+              </article>
+              <article class="metric-card metric-complete">
+                <div class="metric-top"><span class="metric-label">Completed</span><span class="metric-icon metric-icon-green"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12.5 4.3 4.2L19 7"/><circle cx="12" cy="12" r="8.5"/></svg></span></div>
+                <div class="metric-value" id="metricCompleted">—</div><div class="metric-foot">Ready-to-use reports</div>
+              </article>
+              <article class="metric-card metric-success">
+                <div class="metric-top"><span class="metric-label">Success rate</span><span class="metric-icon metric-icon-peach"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 17.5 9 12l3.5 3 7-8"/><path d="M14.5 7H20v5.5"/></svg></span></div>
+                <div class="metric-value"><span id="metricSuccess">—</span><small>%</small></div><div class="metric-foot">Of runs with a final outcome</div>
+              </article>
+            </section>
+
+            <section class="workspace-grid">
+              <article class="panel runs-panel">
+                <div class="panel-heading">
+                  <div><p class="eyebrow">THE LATEST</p><h2>Recent task runs</h2><p class="panel-description">A quick look at what your agents are working on.</p></div>
+                  <button class="text-button" type="button" data-view="tasks">View all <span aria-hidden="true">→</span></button>
+                </div>
+                <div class="run-list-header"><span>Task</span><span>Priority</span><span>Status</span><span>Updated</span></div>
+                <div class="run-list" id="recentTasks" aria-live="polite">
+                  <div class="loading-state"><span class="spinner"></span> Loading your task runs…</div>
+                </div>
+              </article>
+
+              <aside class="overview-rail">
+                <article class="panel agents-panel">
+                  <div class="panel-heading panel-heading-compact"><div><p class="eyebrow">YOUR SPECIALISTS</p><h2>Agent team</h2></div><button class="round-arrow" type="button" data-view="agents" aria-label="Open agent library">→</button></div>
+                  <div class="mini-agent-list" id="miniAgentList">
+                    <div class="agent-loading"><span class="spinner spinner-small"></span> Loading agents…</div>
+                  </div>
+                  <button class="panel-footer-link" type="button" data-view="agents">Meet your full team <span aria-hidden="true">↗</span></button>
+                </article>
+                <article class="panel prompt-panel">
+                  <div class="prompt-panel-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5 14.5 9.5 20.5 12l-6 2.5-2.5 6-2.5-6-6-2.5 6-2.5 2.5-6Z"/><path d="m19 3 .7 2.3L22 6l-2.3.7L19 9l-.7-2.3L16 6l2.3-.7L19 3Z"/></svg></div>
+                  <div><h3>Not sure where to start?</h3><p>Pick a playbook and let the team do the legwork.</p></div>
+                  <div class="quick-template-list" id="quickTemplates"></div>
+                </article>
+              </aside>
+            </section>
+            <footer class="page-footer"><span>Meta AgentX</span><span class="footer-separator">·</span><span>Thoughtful intelligence, built together.</span><a href="/docs" target="_blank" rel="noreferrer">API docs ↗</a></footer>
+          </section>
+
+          <section class="view" id="tasksView" hidden aria-labelledby="tasksTitle">
+            <div class="page-heading task-page-heading">
+              <div><p class="eyebrow">YOUR WORKSPACE</p><h1 id="tasksTitle">Task runs</h1><p class="page-subtitle">Follow each goal from first brief to final report.</p></div>
+              <button class="button button-primary" type="button" data-open-task><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 4v12M4 10h12" /></svg><span>New task</span></button>
+            </div>
+            <article class="panel all-runs-panel">
+              <div class="runs-toolbar">
+                <div class="filter-pills" id="statusFilters" role="group" aria-label="Filter task runs by status">
+                  <button type="button" class="filter-pill active" data-status-filter="all">All runs <span id="filterAllCount">0</span></button>
+                  <button type="button" class="filter-pill" data-status-filter="active">In progress</button>
+                  <button type="button" class="filter-pill" data-status-filter="complete">Completed</button>
+                  <button type="button" class="filter-pill" data-status-filter="failed">Needs attention</button>
+                </div>
+                <div class="runs-toolbar-actions"><span class="result-count" id="runResultCount">0 runs</span><button class="button button-secondary button-export" id="exportRuns" type="button"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 3.5v9M6.5 9 10 12.5 13.5 9M4 14.5v2h12v-2"/></svg>Export CSV</button></div>
+              </div>
+              <div class="run-list-header all-run-list-header"><span>Task</span><span>Priority</span><span>Status</span><span>Updated</span></div>
+              <div class="run-list all-run-list" id="allTasks" aria-live="polite"><div class="loading-state"><span class="spinner"></span> Loading your task runs…</div></div>
+              <div class="list-footnote" id="listFootnote">Showing the latest 100 runs.</div>
+            </article>
+          </section>
+
+          <section class="view" id="agentsView" hidden aria-labelledby="agentsTitle">
+            <div class="page-heading agents-page-heading">
+              <div><p class="eyebrow">A TEAM THAT THINKS TOGETHER</p><h1 id="agentsTitle">Meet your agent team</h1><p class="page-subtitle">Focused specialists bring their own tools. The Meta Agent connects the dots.</p></div>
+              <button class="button button-primary" type="button" data-open-task><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 4v12M4 10h12" /></svg><span>Put them to work</span></button>
+            </div>
+            <div class="agent-intro-strip"><span class="intro-sparkle">✦</span><p>The Manager builds a dependency-aware task tree. Specialists work in parallel, the Reviewer checks evidence and calculations, and Synthesis combines the verified findings.</p><span class="intro-team-count"><strong id="agentCount">9</strong><small>agent roles</small></span></div>
+            <div class="agent-grid" id="agentGrid"><div class="loading-state"><span class="spinner"></span> Assembling your team…</div></div>
+            <section class="agent-how-it-works"><div class="how-title"><p class="eyebrow">BUILT FOR THE WAY WORK ACTUALLY HAPPENS</p><h2>From open question to clear direction.</h2></div><div class="how-steps"><article><span class="how-number">01</span><div><h3>Set the goal</h3><p>Describe the outcome you need in plain language. Add context, audience, and constraints.</p></div></article><article><span class="how-number">02</span><div><h3>Let specialists investigate</h3><p>The Manager Agent creates a dependency-aware plan and gives each specialist only the tools they need.</p></div></article><article><span class="how-number">03</span><div><h3>Make a confident move</h3><p>Get the findings, source evidence, confidence, and a prioritized final report in one place.</p></div></article></div></section>
+          </section>
+
+          <section class="view" id="businessContextView" hidden aria-labelledby="businessContextTitle">
+            <div class="page-heading business-context-heading">
+              <div>
+                <p class="eyebrow">WORKSPACE KNOWLEDGE</p>
+                <h1 id="businessContextTitle">Business context</h1>
+                <p class="page-subtitle">Give your agent team a shared brief and trusted reference material for future tasks.</p>
+              </div>
+              <span class="context-included-pill"><span></span> Included in new tasks</span>
+            </div>
+
+            <div class="business-context-layout">
+              <article class="panel context-profile-panel">
+                <header class="context-panel-heading">
+                  <div><p class="eyebrow">YOUR BUSINESS PROFILE</p><h2>Help the team understand your world</h2><p>Save the background you usually repeat in every brief.</p></div>
+                  <span class="context-profile-icon" aria-hidden="true">✦</span>
+                </header>
+                <form id="businessContextForm" class="business-context-form">
+                  <div class="context-field">
+                    <label for="businessName">Business or team name</label>
+                    <input id="businessName" name="business_name" type="text" maxlength="160" placeholder="e.g. Northstar Studio" autocomplete="organization" />
+                  </div>
+                  <div class="context-field">
+                    <label for="businessProfileText">What should your agents know?</label>
+                    <textarea id="businessProfileText" name="profile_text" rows="10" maxlength="20000" placeholder="Describe what you do, who you serve, your products, key goals, important metrics, terminology, constraints, and anything else that helps the team give relevant answers…"></textarea>
+                    <div class="context-editor-meta"><span>Keep it factual; avoid passwords or sensitive personal information.</span><span id="businessContextCount">0 / 20,000</span></div>
+                  </div>
+                  <div class="context-form-footer">
+                    <span id="businessContextSaveState" class="context-save-state">Not saved yet</span>
+                    <button class="button button-primary" id="saveBusinessContextButton" type="submit"><span>Save profile</span><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m4 10.5 4 4 8-9"/></svg></button>
+                  </div>
+                  <p id="businessContextError" class="context-error" role="alert" hidden></p>
+                </form>
+              </article>
+
+              <aside class="business-context-side">
+                <article class="panel context-documents-panel">
+                  <header class="context-panel-heading context-documents-heading">
+                    <div><p class="eyebrow">REFERENCE MATERIAL</p><h2>Business documents</h2><p>Upload guides or reports for new tasks to reference.</p></div>
+                  </header>
+                  <label class="context-upload-dropzone" for="businessFileInput">
+                    <input id="businessFileInput" type="file" accept=".pdf,.csv,.txt,.md" multiple />
+                    <span class="context-upload-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 15.5V4.5M7.5 9 12 4.5 16.5 9M4.5 15v4h15v-4"/></svg></span>
+                    <span class="context-upload-copy"><strong>Choose files to add</strong><small>PDF, CSV, TXT, or Markdown · up to 5 MB each (12 files / 25 MB total)</small></span>
+                    <span class="context-upload-plus" aria-hidden="true">+</span>
+                  </label>
+                  <p id="businessUploadStatus" class="context-upload-status" aria-live="polite">Checking where files are saved…</p>
+                  <div id="businessDocumentList" class="business-document-list"><div class="context-empty-documents">No business documents yet.</div></div>
+                </article>
+
+                <article class="panel context-snapshot-note">
+                  <span class="context-note-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3.5 14.5 9.5 20.5 12l-6 2.5-2.5 6-2.5-6-6-2.5 6-2.5 2.5-6Z"/><path d="m19 3 .7 2.3L22 6l-2.3.7L19 9l-.7-2.3L16 6l2.3-.7L19 3Z"/></svg></span>
+                  <div><h3>How agents use this</h3><p>New tasks snapshot this profile, document text, and recent-analysis memory. Agents cite supplied files and say when evidence is missing; only server-configured connectors can read a live business system.</p></div>
+                </article>
+              </aside>
+            </div>
+          </section>
+
+          <section class="view" id="connectionsView" hidden aria-labelledby="connectionsTitle">
+            <div class="page-heading connections-heading">
+              <div>
+                <p class="eyebrow">YOUR DATA, YOUR SOURCES</p>
+                <h1 id="connectionsTitle">Data connections</h1>
+                <p class="page-subtitle">Keep uploaded files as your starting point, or configure read-only business systems on the server.</p>
+              </div>
+            </div>
+            <div class="storage-status-grid">
+              <article class="panel storage-status-card">
+                <span class="storage-status-icon">DB</span>
+                <div><p class="eyebrow">TASKS & HISTORY</p><h2 id="databaseStorageName">Checking database…</h2><p id="databaseStorageDescription">Saved prompts stay in this browser; task history is stored by the API.</p></div>
+                <span class="integration-status" id="databaseStorageBadge">Checking</span>
+              </article>
+              <article class="panel storage-status-card">
+                <span class="storage-status-icon storage-status-file">↥</span>
+                <div><p class="eyebrow">ORIGINAL UPLOADS</p><h2 id="fileStorageName">Checking file storage…</h2><p id="fileStorageDescription">Documents and extracted text are retained for future task context.</p></div>
+                <span class="integration-status" id="fileStorageBadge">Checking</span>
+              </article>
+            </div>
+            <article class="connection-safety-note"><span>i</span><p><strong>Secrets stay server-side.</strong> Set credentials as environment variables and use read-only access. This prototype has no sign-in or workspace isolation: anyone who can reach a public demo can see its shared data. Use fictional or redacted files until access controls are added. Configured connectors may still read live data in fake-model mode; the fake model does not analyze it.</p></article>
+            <div class="integration-section-heading"><div><p class="eyebrow">CONNECTORS</p><h2>Choose a source</h2><p>Uploaded PDFs/CSVs work without an external account. The marked provider adapters can be tested when configured.</p></div><span id="integrationCount" class="connection-count">— options</span></div>
+            <div class="integration-grid" id="integrationGrid"><div class="loading-state"><span class="spinner"></span> Loading connection options…</div></div>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <div class="modal-backdrop" id="taskModal" hidden>
+      <section class="task-modal" role="dialog" aria-modal="true" aria-labelledby="taskModalTitle">
+        <header class="modal-header"><div><span class="modal-kicker">NEW WORKFLOW</span><h2 id="taskModalTitle">What should your agents solve?</h2><p>Give the team a clear goal. They’ll figure out the plan.</p></div><button class="icon-button modal-close" type="button" data-close-task-modal aria-label="Close dialog"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" /></svg></button></header>
+        <form id="taskForm">
+          <div class="form-content">
+            <div class="form-field"><div class="field-heading"><label for="taskGoal">Your goal</label><span class="field-hint">Be specific about the outcome · 10 character minimum</span></div><textarea id="taskGoal" name="goal" rows="5" minlength="10" maxlength="20000" placeholder="For example: Compare the uploaded invoices, flag inconsistent totals or duplicate invoice numbers, and cite each finding to a file…" required></textarea><div class="textarea-meta"><span id="goalHelper">A good brief gives your agents a stronger starting point.</span><span id="goalCount">0 / 20,000</span></div></div>
+            <section class="saved-prompts-panel" aria-label="Saved prompts">
+              <div class="saved-prompts-heading"><div><strong>Saved prompts</strong><small>Stored only in this browser</small></div><span class="local-only-badge">LOCAL</span></div>
+              <div class="saved-prompts-controls">
+                <input id="savedPromptTitle" type="text" maxlength="70" placeholder="Name this prompt (optional)" aria-label="Saved prompt name" />
+                <button class="button button-secondary saved-prompt-save" id="savePromptButton" type="button">Save current</button>
+              </div>
+              <div class="saved-prompts-controls">
+                <select id="savedPromptList" aria-label="Choose a saved prompt"><option value="">No saved prompts yet</option></select>
+                <button class="button button-secondary" id="loadPromptButton" type="button" disabled>Load</button>
+                <button class="icon-button saved-prompt-delete" id="deletePromptButton" type="button" aria-label="Delete selected saved prompt" title="Delete saved prompt" disabled>×</button>
+              </div>
+              <p id="savedPromptStatus" class="saved-prompt-status" aria-live="polite">Saved prompts are private to this browser and are not uploaded.</p>
+            </section>
+            <div class="form-field"><div class="field-heading"><label>Starting point</label><span class="field-hint">Optional playbooks</span></div><div class="modal-template-grid" id="modalTemplates"></div></div>
+            <label class="memory-toggle"><input id="useConversationMemory" type="checkbox" checked /><span><strong>Use recent analysis memory</strong><small>Include summaries from up to three recent completed runs as background context.</small></span></label>
+            <fieldset class="priority-field"><legend>How urgent is this?</legend><div class="priority-options" role="radiogroup" aria-label="Task priority">
+              <button class="priority-option priority-low" type="button" role="radio" aria-checked="false" data-priority="low"><span class="priority-dot"></span><span><strong>Low</strong><small>Whenever</small></span></button>
+              <button class="priority-option priority-medium selected" type="button" role="radio" aria-checked="true" data-priority="medium"><span class="priority-dot"></span><span><strong>Medium</strong><small>Normal pace</small></span></button>
+              <button class="priority-option priority-high" type="button" role="radio" aria-checked="false" data-priority="high"><span class="priority-dot"></span><span><strong>High</strong><small>Move soon</small></span></button>
+              <button class="priority-option priority-critical" type="button" role="radio" aria-checked="false" data-priority="critical"><span class="priority-dot"></span><span><strong>Critical</strong><small>Time-sensitive</small></span></button>
+            </div></fieldset>
+            <div class="form-error" id="formError" role="alert" hidden></div>
+          </div>
+          <footer class="modal-footer"><span class="modal-security"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2.8 16 5v4.8c0 3.5-2.6 6-6 7.4-3.4-1.4-6-3.9-6-7.4V5l6-2.2Z"/><path d="m7.4 9.9 1.7 1.7 3.7-3.8"/></svg>Saved business context is added to new tasks.</span><div><button class="button button-secondary" type="button" data-close-task-modal>Cancel</button><button class="button button-primary" id="submitTaskButton" type="submit"><span>Create task</span><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11M10 5l5 5-5 5" /></svg></button></div></footer>
+        </form>
+      </section>
+    </div>
+
+    <div class="drawer-backdrop" id="detailBackdrop" hidden>
+      <aside class="detail-drawer" role="dialog" aria-modal="true" aria-labelledby="detailTitle">
+        <div class="detail-loading"><span class="spinner"></span><span>Loading task details…</span></div>
+      </aside>
+    </div>
+
+    <div class="toast-region" id="toastRegion" aria-live="polite" aria-atomic="false"></div>
+    <div class="shortcut-popover" id="shortcutPopover" hidden><button class="icon-button popover-close" id="closeShortcuts" type="button" aria-label="Close shortcuts"><svg viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></svg></button><strong>Keyboard shortcuts</strong><div><kbd>N</kbd><span>New task</span></div><div><kbd>/</kbd><span>Search runs</span></div><div><kbd>Esc</kbd><span>Close open panel</span></div></div>
+  </body>
+</html>

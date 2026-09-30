@@ -1,0 +1,2 @@
+# Conventional plural filename; keep dependency pins in the original manifest.
+-r requirement.txt

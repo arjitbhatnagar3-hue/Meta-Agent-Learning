@@ -1,0 +1,4 @@
+record_notice,invoice_id,vendor,issue_date,currency,subtotal,tax,total,payment_status
+"FICTIONAL DEMO ONLY — invented values; not a real company record",DEMO-INV-001,Paperkite Sample Supply,2026-09-02,INR,1000.00,180.00,1180.00,paid
+"FICTIONAL DEMO ONLY — invented values; not a real company record",DEMO-INV-002,Paperkite Sample Supply,2026-09-08,INR,1250.00,225.00,1520.00,unpaid
+"FICTIONAL DEMO ONLY — invented values; not a real company record",DEMO-INV-002,Paperkite Sample Supply,2026-09-09,INR,500.00,90.00,590.00,paid
